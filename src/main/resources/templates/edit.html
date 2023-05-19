@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование клиента</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, Arial, sans-serif;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container button[type="submit"] {
+            width: 100%;
+            padding: 7px 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        .form-container button[type="submit"] {
+            margin-top: 10px;
+            background-color: #007dff;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+
+        .form-container button[type="submit"]:hover {
+            background-color: #0063cc;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Редактирование клиента</h2>
+    <form th:action="'/client/edit/post/' + ${client.id}" method="post">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" th:value="${client.name}" required />
+
+        <label for="phone">Телефон:</label>
+        <input type="text" id="phone" name="phone" th:value="${client.phone}" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${client.email}" required />
+
+        <button type="submit">Редактировать</button>
+    </form>
+</div>
+</body>
+</html>

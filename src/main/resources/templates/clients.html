@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clients</title>
+    <style>
+        * {
+            font-family: -apple-system, Arial, sans-serif;
+        }
+
+        .table {
+            border: 1px solid #eee;
+            table-layout: fixed;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .table th {
+            font-weight: bold;
+            padding: 5px;
+            background: #efefef;
+            border: 1px solid #dddddd;
+            text-align: center;
+        }
+
+        .table td {
+            padding: 5px 10px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        .table tbody tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background: #F7F7F7;
+        }
+
+        button {
+            border: none !important;
+            background-color: #007dff;
+            color: #fff;
+            border-radius: 3px;
+            padding: 7px 14px;
+            cursor: pointer;
+            transition: all .5s;
+        }
+        
+        button:hover {
+            background-color: #0063cc;
+        }
+
+        button.red {
+            background-color: #ff2b2b;
+        }
+
+        button.red:hover {
+            background-color: #fa0000;
+        }
+
+        button.green {
+            background-color: #32cd32;
+        }
+
+        button.green:hover {
+            background-color: #27a327;
+        }
+    </style>
+</head>
+<body>
+<h1>Clients</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.id}"></td>
+        <td th:text="${client.name}"></td>
+        <td th:text="${client.phone}"></td>
+        <td th:text="${client.email}"></td>
+        <td>
+            <form method="post" th:action="'/client/delete/'+ ${client.id}">
+                <button class="red">Удалить</button>
+            </form>
+            <form method="get" th:action="'/client/edit/'+ ${client.id}" style="margin-top: 4px;">
+                <button class="green">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+    <form method="get" action="/client/form">
+        <button style="margin-bottom: 16px;">
+            Добавить клиента
+        </button>
+    </form>
+</table>
+</body>
+</html>
